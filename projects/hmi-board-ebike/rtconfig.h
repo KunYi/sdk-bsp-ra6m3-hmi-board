@@ -88,8 +88,12 @@
 #define RT_USING_SERIAL
 #define RT_USING_SERIAL_V2
 #define RT_SERIAL_USING_DMA
+#define RT_USING_I2C
+#define RT_USING_I2C_BITOPS
 #define RT_USING_PIN
 #define RT_USING_PWM
+#define RT_USING_TOUCH
+#define RT_TOUCH_PIN_IRQ
 
 /* Using USB */
 
@@ -166,9 +170,10 @@
 /* LVGL: powerful and easy-to-use embedded GUI library */
 
 #define PKG_USING_LVGL
-#define PKG_LVGL_THREAD_PRIO 20
+#define PKG_LVGL_THREAD_PRIO 0
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
-#define PKG_LVGL_DISP_REFR_PERIOD 5
+#define PKG_LVGL_DISP_REFR_PERIOD 30
+#define PKG_USING_LVGL_SQUARELINE
 #define PKG_LVGL_USING_V08038
 #define PKG_LVGL_VER_NUM 0x08038
 #define PKG_USING_LV_MUSIC_DEMO
@@ -301,11 +306,17 @@
 #define BSP_USING_UART9
 #define BSP_UART9_RX_BUFSIZE 256
 #define BSP_UART9_TX_BUFSIZE 0
+#define BSP_USING_I2C
+#define BSP_USING_I2C1
+#define BSP_I2C1_SCL_PIN 0x0202
+#define BSP_I2C1_SDA_PIN 0x0203
 #define BSP_USING_PWM
 #define BSP_USING_PWM5
 #define BSP_USING_LCD
 #define BSP_USING_G2D
 #define BSP_USING_LVGL
+#define BSP_USING_LCD_RGB
+#define BSP_USING_TOUCH
 #define BSP_USING_LVGL_DEMO
 #define BSP_USING_LVGL_MUSIC_DEMO
 /* end of On-chip Peripheral Drivers */

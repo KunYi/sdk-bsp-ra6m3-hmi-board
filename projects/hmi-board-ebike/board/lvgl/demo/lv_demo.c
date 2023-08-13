@@ -10,6 +10,7 @@
  */
 #include "rtconfig.h"
 
+#if 0
 void lv_user_gui_init(void)
 {
     /* display demo; you may replace with your LVGL application at here */
@@ -21,3 +22,4 @@ void lv_user_gui_init(void)
     lv_demo_music();
 #endif
 }
+#endif
