@@ -89,6 +89,7 @@
 #define RT_USING_SERIAL_V2
 #define RT_SERIAL_USING_DMA
 #define RT_USING_PIN
+#define RT_USING_PWM
 
 /* Using USB */
 
@@ -164,6 +165,13 @@
 
 /* LVGL: powerful and easy-to-use embedded GUI library */
 
+#define PKG_USING_LVGL
+#define PKG_LVGL_THREAD_PRIO 20
+#define PKG_LVGL_THREAD_STACK_SIZE 4096
+#define PKG_LVGL_DISP_REFR_PERIOD 5
+#define PKG_LVGL_USING_V08038
+#define PKG_LVGL_VER_NUM 0x08038
+#define PKG_USING_LV_MUSIC_DEMO
 /* end of LVGL: powerful and easy-to-use embedded GUI library */
 
 /* u8g2: a monochrome graphic library */
@@ -293,6 +301,13 @@
 #define BSP_USING_UART9
 #define BSP_UART9_RX_BUFSIZE 256
 #define BSP_UART9_TX_BUFSIZE 0
+#define BSP_USING_PWM
+#define BSP_USING_PWM5
+#define BSP_USING_LCD
+#define BSP_USING_G2D
+#define BSP_USING_LVGL
+#define BSP_USING_LVGL_DEMO
+#define BSP_USING_LVGL_MUSIC_DEMO
 /* end of On-chip Peripheral Drivers */
 
 /* Board extended module Drivers */
