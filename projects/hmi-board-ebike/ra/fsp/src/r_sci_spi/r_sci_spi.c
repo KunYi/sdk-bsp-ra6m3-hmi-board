@@ -1,5 +1,5 @@
 /***********************************************************************************************************************
- * Copyright [2020-2021] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
+ * Copyright [2020-2023] Renesas Electronics Corporation and/or its affiliates.  All Rights Reserved.
  *
  * This software and documentation are supplied by Renesas Electronics America Inc. and may only be used with products
  * of Renesas Electronics Corp. and its affiliates ("Renesas").  No other uses are authorized.  Renesas products are
@@ -730,13 +730,13 @@ static fsp_err_t r_sci_spi_write_read_common (sci_spi_instance_ctrl_t * const p_
         {
             /* If the source is NULL transmit using a dummy value using FIXED mode. */
             static uint8_t tx_dummy = 0;
-            p_transfer->p_cfg->p_info->src_addr_mode = TRANSFER_ADDR_MODE_FIXED;
-            p_transfer->p_cfg->p_info->p_src         = &tx_dummy;
+            p_transfer->p_cfg->p_info->transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_FIXED;
+            p_transfer->p_cfg->p_info->p_src = &tx_dummy;
         }
         else
         {
-            p_transfer->p_cfg->p_info->src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED;
-            p_transfer->p_cfg->p_info->p_src         = p_src;
+            p_transfer->p_cfg->p_info->transfer_settings_word_b.src_addr_mode = TRANSFER_ADDR_MODE_INCREMENTED;
+            p_transfer->p_cfg->p_info->p_src = p_src;
         }
 
         /* Enable the transfer instance. */
@@ -901,7 +901,7 @@ static void r_sci_spi_call_callback (sci_spi_instance_ctrl_t * p_ctrl, spi_event
 void sci_spi_txi_isr (void)
 {
     /* Save context if RTOS is used. */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
     IRQn_Type irq = R_FSP_CurrentIrqGet();
     R_BSP_IrqStatusClear(irq);
     sci_spi_instance_ctrl_t * p_ctrl = (sci_spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
@@ -917,7 +917,7 @@ void sci_spi_txi_isr (void)
     }
 
     /* Restore context if RTOS is used. */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 /*******************************************************************************************************************//**
@@ -931,7 +931,7 @@ void sci_spi_txi_isr (void)
 void sci_spi_rxi_isr (void)
 {
     /* Save context if RTOS is used. */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type irq = R_FSP_CurrentIrqGet();
     R_BSP_IrqStatusClear(irq);
@@ -955,7 +955,7 @@ void sci_spi_rxi_isr (void)
     }
 
     /* Restore context if RTOS is used. */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 /*******************************************************************************************************************//**
@@ -967,7 +967,7 @@ void sci_spi_rxi_isr (void)
 void sci_spi_tei_isr (void)
 {
     /* Save context if RTOS is used. */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type                 irq    = R_FSP_CurrentIrqGet();
     sci_spi_instance_ctrl_t * p_ctrl = (sci_spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
@@ -981,7 +981,7 @@ void sci_spi_tei_isr (void)
     R_BSP_IrqStatusClear(irq);
 
     /* Restore context if RTOS is used. */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
 
 /*******************************************************************************************************************//**
@@ -993,7 +993,7 @@ void sci_spi_tei_isr (void)
 void sci_spi_eri_isr (void)
 {
     /* Save context if RTOS is used. */
-    FSP_CONTEXT_SAVE;
+    FSP_CONTEXT_SAVE
 
     IRQn_Type                 irq    = R_FSP_CurrentIrqGet();
     sci_spi_instance_ctrl_t * p_ctrl = (sci_spi_instance_ctrl_t *) R_FSP_IsrContextGet(irq);
@@ -1015,5 +1015,5 @@ void sci_spi_eri_isr (void)
     R_BSP_IrqStatusClear(irq);
 
     /* Restore context if RTOS is used. */
-    FSP_CONTEXT_RESTORE;
+    FSP_CONTEXT_RESTORE
 }
