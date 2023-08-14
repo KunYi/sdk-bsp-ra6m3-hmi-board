@@ -6,7 +6,7 @@
         #endif
 /* Number of interrupts allocated */
 #ifndef VECTOR_DATA_IRQ_COUNT
-#define VECTOR_DATA_IRQ_COUNT    (40)
+#define VECTOR_DATA_IRQ_COUNT    (42)
 #endif
 /* ISR prototypes */
 void sci_uart_rxi_isr(void);
@@ -32,6 +32,8 @@ void can_rx_isr(void);
 void can_tx_isr(void);
 void r_icu_isr(void);
 void ether_eint_isr(void);
+void rtc_alarm_periodic_isr(void);
+void rtc_carry_isr(void);
 
 /* Vector table allocations */
 #define VECTOR_NUMBER_SCI9_RXI ((IRQn_Type) 0) /* SCI9 RXI (Received data full) */
@@ -114,6 +116,10 @@ void ether_eint_isr(void);
 #define SCI4_ERI_IRQn          ((IRQn_Type) 38) /* SCI4 ERI (Receive error) */
 #define VECTOR_NUMBER_EDMAC0_EINT ((IRQn_Type) 39) /* EDMAC0 EINT (EDMAC 0 interrupt) */
 #define EDMAC0_EINT_IRQn          ((IRQn_Type) 39) /* EDMAC0 EINT (EDMAC 0 interrupt) */
+#define VECTOR_NUMBER_RTC_ALARM ((IRQn_Type) 40) /* RTC ALARM (Alarm interrupt) */
+#define RTC_ALARM_IRQn          ((IRQn_Type) 40) /* RTC ALARM (Alarm interrupt) */
+#define VECTOR_NUMBER_RTC_CARRY ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
+#define RTC_CARRY_IRQn          ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
 #ifdef __cplusplus
         }
         #endif

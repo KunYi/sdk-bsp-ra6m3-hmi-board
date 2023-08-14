@@ -44,6 +44,8 @@
             [37] = sci_spi_tei_isr, /* SCI4 TEI (Transmit end) */
             [38] = sci_spi_eri_isr, /* SCI4 ERI (Receive error) */
             [39] = ether_eint_isr, /* EDMAC0 EINT (EDMAC 0 interrupt) */
+            [40] = rtc_alarm_periodic_isr, /* RTC ALARM (Alarm interrupt) */
+            [41] = rtc_carry_isr, /* RTC CARRY (Carry interrupt) */
         };
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENTRIES] =
         {
@@ -87,5 +89,7 @@
             [37] = BSP_PRV_IELS_ENUM(EVENT_SCI4_TEI), /* SCI4 TEI (Transmit end) */
             [38] = BSP_PRV_IELS_ENUM(EVENT_SCI4_ERI), /* SCI4 ERI (Receive error) */
             [39] = BSP_PRV_IELS_ENUM(EVENT_EDMAC0_EINT), /* EDMAC0 EINT (EDMAC 0 interrupt) */
+            [40] = BSP_PRV_IELS_ENUM(EVENT_RTC_ALARM), /* RTC ALARM (Alarm interrupt) */
+            [41] = BSP_PRV_IELS_ENUM(EVENT_RTC_CARRY), /* RTC CARRY (Carry interrupt) */
         };
         #endif
