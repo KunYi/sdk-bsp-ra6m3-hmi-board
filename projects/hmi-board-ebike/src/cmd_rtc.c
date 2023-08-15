@@ -49,7 +49,7 @@ int uesr_rtc_init(void)
         return ret;
     }
     /* 设置时间 */
-    ret = set_time(12, 20, 50);
+    ret = set_time(20, 4, 50);
     if (ret != RT_EOK)
     {
         rt_kprintf("set RTC time failed\n");

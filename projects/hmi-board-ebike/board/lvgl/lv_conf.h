@@ -36,32 +36,53 @@
     #define LV_DPI_DEF              89
 #endif
 
-#ifdef BSP_USING_LVGL_VIDEO_DEMO
-#define LV_USE_FILE_EXPLORER    1
-#if LV_USE_FILE_EXPLORER
-    /*Maximum length of path*/
-    #define LV_FILE_EXPLORER_PATH_MAX_LEN        (128)
-    /*Quick access bar, 1:use, 0:not use*/
-    /*Requires: lv_list*/
-    #define LV_FILE_EXPLORER_QUICK_ACCESS        0
-#endif
-
-#define LV_USE_FS_STDIO 1
-#if LV_USE_FS_STDIO
-    #define LV_FS_STDIO_LETTER '/'      /*Set an upper cased letter on which the drive will accessible (e.g. 'A')*/
-    #define LV_FS_STDIO_PATH "/"        /*Set the working directory. File/directory paths will be appended to it.*/
-    #define LV_FS_STDIO_CACHE_SIZE  0   /*>0 to cache this number of bytes in lv_fs_read()*/
-#endif
-#endif
-
 #define LVGL_MUTEX_NAME  "LVGL"
-#ifdef PKG_USING_LV_MUSIC_DEMO
-/* music player demo */
-#define LV_USE_DEMO_RTT_MUSIC       1
-#define LV_DEMO_RTT_MUSIC_AUTO_PLAY 1
-#define LV_FONT_MONTSERRAT_12       1
-#define LV_FONT_MONTSERRAT_16       1
-#define LV_COLOR_SCREEN_TRANSP      0
-#endif /* PKG_USING_LV_MUSIC_DEMO */
+
+/*==================
+ *   FONT USAGE
+ *===================*/
+
+/*Montserrat fonts with ASCII range and some symbols using bpp = 4
+ *https://fonts.google.com/specimen/Montserrat*/
+#define LV_FONT_MONTSERRAT_8 0
+#define LV_FONT_MONTSERRAT_10 0
+#define LV_FONT_MONTSERRAT_12 0
+#define LV_FONT_MONTSERRAT_14 1
+#define LV_FONT_MONTSERRAT_16 1
+#define LV_FONT_MONTSERRAT_18 0
+#define LV_FONT_MONTSERRAT_20 0
+#define LV_FONT_MONTSERRAT_22 0
+#define LV_FONT_MONTSERRAT_24 0
+#define LV_FONT_MONTSERRAT_26 0
+#define LV_FONT_MONTSERRAT_28 0
+#define LV_FONT_MONTSERRAT_30 0
+#define LV_FONT_MONTSERRAT_32 0
+#define LV_FONT_MONTSERRAT_34 0
+#define LV_FONT_MONTSERRAT_36 0
+#define LV_FONT_MONTSERRAT_38 0
+#define LV_FONT_MONTSERRAT_40 0
+#define LV_FONT_MONTSERRAT_42 0
+#define LV_FONT_MONTSERRAT_44 0
+#define LV_FONT_MONTSERRAT_46 0
+#define LV_FONT_MONTSERRAT_48 0
+
+/*Demonstrate special features*/
+#define LV_FONT_MONTSERRAT_12_SUBPX      0
+#define LV_FONT_MONTSERRAT_28_COMPRESSED 0  /*bpp = 3*/
+#define LV_FONT_DEJAVU_16_PERSIAN_HEBREW 0  /*Hebrew, Arabic, Persian letters and all their forms*/
+#define LV_FONT_SIMSUN_16_CJK            0  /*1000 most common CJK radicals*/
+
+/*Pixel perfect monospace fonts*/
+#define LV_FONT_UNSCII_8  0
+#define LV_FONT_UNSCII_16 0
+
+/*Optionally declare custom fonts here.
+ *You can use these fonts as default font too and they will be available globally.
+ *E.g. #define LV_FONT_CUSTOM_DECLARE   LV_FONT_DECLARE(my_font_1) LV_FONT_DECLARE(my_font_2)*/
+#define LV_FONT_CUSTOM_DECLARE
+
+/*Always set a default font*/
+#define LV_FONT_DEFAULT &lv_font_montserrat_14
+
 
 #endif

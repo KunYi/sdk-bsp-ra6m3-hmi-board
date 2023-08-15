@@ -25,6 +25,7 @@ SET(SOURCES screens/ui_Driving.c
     fonts/ui_font_Big.c
     fonts/ui_font_Medium.c
     fonts/ui_font_Number.c
-    fonts/ui_font_Small.c)
+    fonts/ui_font_Small.c
+    fonts/ui_font_TimeSegment.c)
 
 add_library(ui ${SOURCES})

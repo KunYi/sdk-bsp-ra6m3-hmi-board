@@ -186,12 +186,12 @@ void ui_Driving_screen_init(void)
     lv_obj_set_width(ui_Label_Time, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_Label_Time, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_Label_Time, -28);
-    lv_obj_set_y(ui_Label_Time, 0);
+    lv_obj_set_y(ui_Label_Time, 2);
     lv_obj_set_align(ui_Label_Time, LV_ALIGN_RIGHT_MID);
-    lv_label_set_text(ui_Label_Time, "11:45");
+    lv_label_set_text(ui_Label_Time, "12:01");
     lv_obj_set_style_text_color(ui_Label_Time, lv_color_hex(0xFFFFFF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_Label_Time, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
-    lv_obj_set_style_text_font(ui_Label_Time, &ui_font_Medium, LV_PART_MAIN | LV_STATE_DEFAULT);
+    lv_obj_set_style_text_font(ui_Label_Time, &ui_font_TimeSegment, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_LabeL_PM = lv_label_create(ui_Group_Header);
     lv_obj_set_width(ui_LabeL_PM, LV_SIZE_CONTENT);   /// 1
