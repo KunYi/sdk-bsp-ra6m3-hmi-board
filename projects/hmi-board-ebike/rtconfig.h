@@ -92,6 +92,8 @@
 #define RT_USING_I2C_BITOPS
 #define RT_USING_PIN
 #define RT_USING_PWM
+#define RT_USING_RTC
+#define RT_USING_ALARM
 #define RT_USING_TOUCH
 #define RT_TOUCH_PIN_IRQ
 
@@ -301,6 +303,7 @@
 /* On-chip Peripheral Drivers */
 
 #define BSP_USING_GPIO
+#define BSP_USING_ONCHIP_RTC
 #define BSP_USING_UART
 #define BSP_USING_UART9
 #define BSP_UART9_RX_BUFSIZE 256
