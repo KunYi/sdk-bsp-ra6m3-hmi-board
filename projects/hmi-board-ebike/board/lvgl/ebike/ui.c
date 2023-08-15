@@ -572,6 +572,7 @@ rt_thread_t clks;
 
 static void update_time(void* unused)
 {
+    static bool isColon = false;
     bool isPM = false;
     struct tm  *now;
     unsigned hour;
@@ -591,7 +592,13 @@ static void update_time(void* unused)
         }
 
         if (RT_EOK == rt_mutex_take(gMutexLvgl, RT_WAITING_FOREVER)) {
+
             lv_snprintf(strTime, sizeof(strTime), "%2d:%02d", hour, now->tm_min);
+
+            isColon = !isColon;
+            if (!isColon)
+                strTime[2] = ' ';
+
             lv_label_set_text(ui_Label_Time, strTime);
             if (isPM)
                 lv_label_set_text(ui_LabeL_PM, "PM");
@@ -600,7 +607,7 @@ static void update_time(void* unused)
 
             rt_mutex_release(gMutexLvgl);
         }
-        rt_thread_mdelay(5000);
+        rt_thread_mdelay(500);
     }
 }
 
