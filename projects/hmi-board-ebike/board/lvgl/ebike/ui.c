@@ -379,6 +379,7 @@ void ui_event_Driving(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_SCREEN_LOADED) {
         Particle1_Animation(ui_Image_Particle1, 0);
         Particle2_Animation(ui_Image_Particle2, 0);
@@ -391,6 +392,7 @@ void ui_event_BTN_BG1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         _ui_state_modify(ui_BTN_BG2, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
         _ui_state_modify(ui_BTN_BG3, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
@@ -412,6 +414,7 @@ void ui_event_BTN_BG2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         _ui_state_modify(ui_BTN_BG1, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
         _ui_state_modify(ui_BTN_BG3, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
@@ -433,6 +436,7 @@ void ui_event_BTN_BG3(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         _ui_state_modify(ui_BTN_BG1, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
         _ui_state_modify(ui_BTN_BG2, LV_STATE_CHECKED, _UI_MODIFY_STATE_REMOVE);
@@ -454,6 +458,7 @@ void ui_event_Button_Pin1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add1, 0);
     }
@@ -462,6 +467,7 @@ void ui_event_Button_Pin2(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add2, 0);
     }
@@ -470,6 +476,7 @@ void ui_event_Button_Pin3(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add3, 0);
     }
@@ -478,6 +485,7 @@ void ui_event_Button_Pin4(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add4, 0);
     }
@@ -486,6 +494,7 @@ void ui_event_Button_Pin5(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add5, 0);
     }
@@ -494,6 +503,7 @@ void ui_event_Button_Pin6(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add6, 0);
     }
@@ -502,6 +512,7 @@ void ui_event_Button_Pin7(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add7, 0);
     }
@@ -510,6 +521,7 @@ void ui_event_Button_Pin8(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add8, 0);
     }
@@ -518,6 +530,7 @@ void ui_event_Button_Pin9(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add9, 0);
     }
@@ -526,6 +539,7 @@ void ui_event_Button_PinX(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add10, 0);
     }
@@ -534,6 +548,7 @@ void ui_event_Button_Pin0(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add11, 0);
     }
@@ -542,12 +557,63 @@ void ui_event_Button_PinX1(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
+    (void) target;
     if(event_code == LV_EVENT_CLICKED) {
         Fash_Animation(ui_Pin_Add12, 0);
     }
 }
 
+#include <rtthread.h>
+#include <time.h>
+extern rt_sem_t rtc_init_sem;
+extern rt_mutex_t gMutexLvgl;
+rt_thread_t clks;
 ///////////////////// SCREENS ////////////////////
+
+static void update_time(void* unused)
+{
+    bool isPM = false;
+    struct tm  *now;
+    unsigned hour;
+    time_t current;
+    char strTime[8];
+
+    (void)unused; /* avoid warning msg */
+
+    while (1) {
+        current = time(NULL) + 10;
+        now = localtime(&current);
+
+        hour = now->tm_hour;
+        if (hour > 12) {
+            hour -= 12;
+            isPM = true;
+        }
+
+        if (RT_EOK == rt_mutex_take(gMutexLvgl, RT_WAITING_FOREVER)) {
+            lv_snprintf(strTime, sizeof(strTime), "%2d:%02d", hour, now->tm_min);
+            lv_label_set_text(ui_Label_Time, strTime);
+            if (isPM)
+                lv_label_set_text(ui_LabeL_PM, "PM");
+            else
+                lv_label_set_text(ui_LabeL_PM, "AM");
+
+            rt_mutex_release(gMutexLvgl);
+        }
+        rt_thread_mdelay(5000);
+    }
+}
+
+static void initTime(void) {
+    if (rt_sem_trytake(rtc_init_sem) == RT_EOK)  {
+        clks = rt_thread_create("clks", update_time, NULL, 1024, RT_THREAD_PRIORITY_MAX - 2, 50);
+        if (clks != RT_NULL)
+            rt_thread_startup(clks);
+    }
+    else {
+        rt_kprintf("init Timer/RTC failed\n");
+    }
+}
 
 void ui_init(void)
 {
@@ -557,4 +623,5 @@ void ui_init(void)
     ui_Driving_screen_init();
     ui____initial_actions0 = lv_obj_create(NULL);
     lv_disp_load_scr(ui_Driving);
+    initTime();
 }
