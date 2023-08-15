@@ -54,6 +54,7 @@
 #endif
 #endif
 
+#define LVGL_MUTEX_NAME  "LVGL"
 #ifdef PKG_USING_LV_MUSIC_DEMO
 /* music player demo */
 #define LV_USE_DEMO_RTT_MUSIC       1

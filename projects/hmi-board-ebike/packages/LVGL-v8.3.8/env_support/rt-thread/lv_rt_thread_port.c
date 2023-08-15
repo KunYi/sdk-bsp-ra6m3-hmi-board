@@ -18,6 +18,8 @@
 #define DBG_LVL    DBG_INFO
 #include <rtdbg.h>
 
+rt_mutex_t gMutexLvgl = RT_NULL;
+
 #ifndef PKG_LVGL_THREAD_STACK_SIZE
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
 #endif /* PKG_LVGL_THREAD_STACK_SIZE */
@@ -51,6 +53,11 @@ static void lvgl_thread_entry(void *parameter)
 #if LV_USE_LOG
     lv_log_register_print_cb(lv_rt_log);
 #endif /* LV_USE_LOG */
+
+    gMutexLvgl = rt_mutex_create(LVGL_MUTEX_NAME, RT_IPC_FLAG_PRIO);
+    if (gMutexLvgl == RT_NULL) {
+        LOG_E("Create mutex of LVGL failed");
+    }
     lv_init();
     lv_port_disp_init();
     lv_port_indev_init();
@@ -59,7 +66,9 @@ static void lvgl_thread_entry(void *parameter)
     /* handle the tasks of LVGL */
     while(1)
     {
+        rt_mutex_take(gMutexLvgl, RT_WAITING_FOREVER);
         lv_task_handler();
+        rt_mutex_release(gMutexLvgl);
         rt_thread_mdelay(LV_DISP_DEF_REFR_PERIOD);
     }
 }
