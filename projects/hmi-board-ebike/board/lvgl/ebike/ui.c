@@ -579,7 +579,7 @@ void intToCharsBitwise(int num, char *result) {
 static void update_time(void* unused)
 {
     static bool isColon = false;
-    bool isPM = false;
+    bool isPM;
     struct tm  *now;
     unsigned hour;
     time_t current;
@@ -591,10 +591,13 @@ static void update_time(void* unused)
         current = time(NULL) + 10;
         now = localtime(&current);
 
+        isPM = false;
         hour = now->tm_hour;
-        if (hour > 12) {
-            hour -= 12;
+        if (hour == 0) { /* 00:00 for 24hr, 12:00 AM*/
+            hour = 12;
+        } else if (hour >= 12 ) { /* 12:00 for 24hr, 12:00 PM */
             isPM = true;
+            hour = (hour > 12) ? hour - 12 : hour;
         }
 
         intToCharsBitwise(hour, &strTime[0]);
