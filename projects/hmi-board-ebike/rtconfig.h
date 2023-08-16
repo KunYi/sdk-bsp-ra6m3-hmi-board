@@ -37,6 +37,7 @@
 
 /* Memory Management */
 
+#define RT_USING_MEMPOOL
 #define RT_USING_SMALL_MEM
 #define RT_USING_SMALL_MEM_AS_HEAP
 #define RT_USING_HEAP
@@ -97,8 +98,34 @@
 #define RT_USING_PWM
 #define RT_USING_RTC
 #define RT_USING_ALARM
+#define RT_USING_SPI
 #define RT_USING_TOUCH
 #define RT_TOUCH_PIN_IRQ
+#define RT_USING_WIFI
+#define RT_WLAN_DEVICE_STA_NAME "wlan0"
+#define RT_WLAN_DEVICE_AP_NAME "wlan1"
+#define RT_WLAN_SSID_MAX_LENGTH 32
+#define RT_WLAN_PASSWORD_MAX_LENGTH 32
+#define RT_WLAN_DEV_EVENT_NUM 2
+#define RT_WLAN_MANAGE_ENABLE
+#define RT_WLAN_SCAN_WAIT_MS 10000
+#define RT_WLAN_CONNECT_WAIT_MS 10000
+#define RT_WLAN_SCAN_SORT
+#define RT_WLAN_MSH_CMD_ENABLE
+#define RT_WLAN_AUTO_CONNECT_ENABLE
+#define AUTO_CONNECTION_PERIOD_MS 2000
+#define RT_WLAN_CFG_ENABLE
+#define RT_WLAN_CFG_INFO_MAX 3
+#define RT_WLAN_PROT_ENABLE
+#define RT_WLAN_PROT_NAME_LEN 8
+#define RT_WLAN_PROT_MAX 2
+#define RT_WLAN_DEFAULT_PROT "lwip"
+#define RT_WLAN_PROT_LWIP_ENABLE
+#define RT_WLAN_PROT_LWIP_NAME "lwip"
+#define RT_WLAN_WORK_THREAD_ENABLE
+#define RT_WLAN_WORKQUEUE_THREAD_NAME "wlan"
+#define RT_WLAN_WORKQUEUE_THREAD_SIZE 2048
+#define RT_WLAN_WORKQUEUE_THREAD_PRIO 15
 
 /* Using USB */
 
@@ -206,6 +233,10 @@
 /* Wiced WiFi */
 
 /* end of Wiced WiFi */
+#define PKG_USING_RW007
+#define PKG_USING_RW007_V210
+#define RW007_NOT_USE_EXAMPLE_DRIVERS
+#define RW007_SPI_MAX_HZ 15000000
 /* end of Wi-Fi */
 
 /* IoT Cloud */
@@ -369,6 +400,8 @@
 #define BSP_USING_UART9
 #define BSP_UART9_RX_BUFSIZE 256
 #define BSP_UART9_TX_BUFSIZE 0
+#define BSP_USING_SCI_SPI
+#define BSP_USING_SCI_SPI3
 #define BSP_USING_I2C
 #define BSP_USING_I2C1
 #define BSP_I2C1_SCL_PIN 0x0202
@@ -385,6 +418,13 @@
 
 /* Board extended module Drivers */
 
+#define BSP_USING_RW007
+#define RA_RW007_SPI_BUS_NAME "scpi3"
+#define RA_RW007_CS_PIN 0x0308
+#define RA_RW007_BOOT0_PIN 0x030B
+#define RA_RW007_BOOT1_PIN 0x0308
+#define RA_RW007_INT_BUSY_PIN 0x000F
+#define RA_RW007_RST_PIN 0x030C
 /* end of Board extended module Drivers */
 /* end of Hardware Drivers Config */
 
