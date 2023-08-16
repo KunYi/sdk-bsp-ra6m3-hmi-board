@@ -570,6 +570,12 @@ extern rt_mutex_t gMutexLvgl;
 rt_thread_t clks;
 ///////////////////// SCREENS ////////////////////
 
+void intToCharsBitwise(int num, char *result) {
+    result[0] = '0' + ((num * 205) >> 11);  // Divide by 10 using bitwise operations
+    result[1] = '0' + (num - ((result[0] - '0') * 10)); // Get the remainder
+    result[2] = '\0';
+}
+
 static void update_time(void* unused)
 {
     static bool isColon = false;
@@ -577,7 +583,7 @@ static void update_time(void* unused)
     struct tm  *now;
     unsigned hour;
     time_t current;
-    char strTime[8];
+    char strTime[6];
 
     (void)unused; /* avoid warning msg */
 
@@ -591,14 +597,15 @@ static void update_time(void* unused)
             isPM = true;
         }
 
+        intToCharsBitwise(hour, &strTime[0]);
+        intToCharsBitwise(now->tm_min, &strTime[3]);
+        if (strTime[0] == '0')
+            strTime[0] = ' ';
+
+        strTime[2] = (isColon) ? ':' : ' ';
+        isColon = !isColon;
+
         if (RT_EOK == rt_mutex_take(gMutexLvgl, RT_WAITING_FOREVER)) {
-
-            lv_snprintf(strTime, sizeof(strTime), "%2d:%02d", hour, now->tm_min);
-
-            isColon = !isColon;
-            if (!isColon)
-                strTime[2] = ' ';
-
             lv_label_set_text(ui_Label_Time, strTime);
             if (isPM)
                 lv_label_set_text(ui_LabeL_PM, "PM");
@@ -607,13 +614,14 @@ static void update_time(void* unused)
 
             rt_mutex_release(gMutexLvgl);
         }
+
         rt_thread_mdelay(500);
     }
 }
 
 static void initTime(void) {
     if (rt_sem_trytake(rtc_init_sem) == RT_EOK)  {
-        clks = rt_thread_create("clks", update_time, NULL, 1024, RT_THREAD_PRIORITY_MAX - 2, 50);
+        clks = rt_thread_create("clks", update_time, NULL, 768, RT_THREAD_PRIORITY_MAX - 2, 50);
         if (clks != RT_NULL)
             rt_thread_startup(clks);
     }
