@@ -38,8 +38,7 @@
 /* Memory Management */
 
 #define RT_USING_MEMPOOL
-#define RT_USING_SMALL_MEM
-#define RT_USING_SMALL_MEM_AS_HEAP
+#define RT_USING_USERHEAP
 #define RT_USING_HEAP
 /* end of Memory Management */
 
@@ -80,6 +79,30 @@
 
 /* DFS: device virtual file system */
 
+#define RT_USING_DFS
+#define DFS_USING_POSIX
+#define DFS_USING_WORKDIR
+#define DFS_FD_MAX 16
+#define RT_USING_DFS_V1
+#define DFS_FILESYSTEMS_MAX 4
+#define DFS_FILESYSTEM_TYPES_MAX 4
+#define RT_USING_DFS_ELMFAT
+
+/* elm-chan's FatFs, Generic FAT Filesystem Module */
+
+#define RT_DFS_ELM_CODE_PAGE 437
+#define RT_DFS_ELM_WORD_ACCESS
+#define RT_DFS_ELM_USE_LFN_3
+#define RT_DFS_ELM_USE_LFN 3
+#define RT_DFS_ELM_LFN_UNICODE_0
+#define RT_DFS_ELM_LFN_UNICODE 0
+#define RT_DFS_ELM_MAX_LFN 255
+#define RT_DFS_ELM_DRIVES 2
+#define RT_DFS_ELM_MAX_SECTOR_SIZE 512
+#define RT_DFS_ELM_REENTRANT
+#define RT_DFS_ELM_MUTEX_TIMEOUT 3000
+/* end of elm-chan's FatFs, Generic FAT Filesystem Module */
+#define RT_USING_DFS_DEVFS
 /* end of DFS: device virtual file system */
 
 /* Device Drivers */
@@ -98,6 +121,12 @@
 #define RT_USING_PWM
 #define RT_USING_RTC
 #define RT_USING_ALARM
+#define RT_USING_SDIO
+#define RT_SDIO_STACK_SIZE 512
+#define RT_SDIO_THREAD_PRIORITY 15
+#define RT_MMCSD_STACK_SIZE 1024
+#define RT_MMCSD_THREAD_PREORITY 22
+#define RT_MMCSD_MAX_PARTITION 16
 #define RT_USING_SPI
 #define RT_USING_TOUCH
 #define RT_TOUCH_PIN_IRQ
@@ -138,6 +167,8 @@
 
 /* POSIX (Portable Operating System Interface) layer */
 
+#define RT_USING_POSIX_FS
+#define RT_USING_POSIX_DEVIO
 
 /* Interprocess Communication (IPC) */
 
@@ -157,7 +188,7 @@
 
 #define SAL_USING_LWIP
 /* end of Docking with protocol stacks */
-#define SAL_SOCKETS_NUM 16
+#define SAL_USING_POSIX
 #define RT_USING_NETDEV
 #define NETDEV_USING_IFCONFIG
 #define NETDEV_USING_PING
@@ -264,9 +295,9 @@
 /* LVGL: powerful and easy-to-use embedded GUI library */
 
 #define PKG_USING_LVGL
-#define PKG_LVGL_THREAD_PRIO 0
+#define PKG_LVGL_THREAD_PRIO 20
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
-#define PKG_LVGL_DISP_REFR_PERIOD 33
+#define PKG_LVGL_DISP_REFR_PERIOD 30
 #define PKG_USING_LVGL_SQUARELINE
 #define PKG_LVGL_USING_V08038
 #define PKG_LVGL_VER_NUM 0x08038
@@ -298,6 +329,9 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
+#define PKG_USING_TLSF
+#define PKG_TLSF_USING_ALIGN
+#define PKG_USING_TLSF_V100
 /* end of system packages */
 
 /* peripheral libraries and drivers */
@@ -406,10 +440,15 @@
 #define BSP_USING_I2C1
 #define BSP_I2C1_SCL_PIN 0x0202
 #define BSP_I2C1_SDA_PIN 0x0203
+#define BSP_USING_FS
+#define BSP_USING_SDCARD_FS
+#define BSP_USING_SDHI
+#define SDHI_USING_1_BIT
 #define BSP_USING_PWM
 #define BSP_USING_PWM5
 #define BSP_USING_LCD
 #define BSP_USING_G2D
+#define BSP_USING_JPEG
 #define BSP_USING_ETH
 #define BSP_USING_LVGL
 #define BSP_USING_LCD_RGB
