@@ -14,7 +14,7 @@
 
 rt_sem_t rtc_init_sem = RT_NULL;
 
-int uesr_rtc_init(void)
+int user_rtc_init(void)
 {
     rt_err_t ret = RT_EOK;
     time_t now;
@@ -42,14 +42,14 @@ int uesr_rtc_init(void)
         return RT_ERROR;
     }
     /* 设置日期 */
-    ret = set_date(2023, 8, 15);
+    ret = set_date(2023, 8, 17);
     if (ret != RT_EOK)
     {
         rt_kprintf("set RTC date failed\n");
         return ret;
     }
     /* 设置时间 */
-    ret = set_time(20, 4, 50);
+    ret = set_time(14, 4, 50);
     if (ret != RT_EOK)
     {
         rt_kprintf("set RTC time failed\n");
@@ -62,8 +62,8 @@ int uesr_rtc_init(void)
     return ret;
 }
 
-/*作为用户APP初始化*/
-INIT_APP_EXPORT(uesr_rtc_init);
+/*使用裝置初始化*/
+INIT_ENV_EXPORT(user_rtc_init);
 
 static time_t now;
 void user_alarm_callback(rt_alarm_t alarm, time_t timestamp)
