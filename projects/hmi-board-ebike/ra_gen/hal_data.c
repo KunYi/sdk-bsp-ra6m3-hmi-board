@@ -37,7 +37,7 @@ const ether_phy_cfg_t g_ether_phy0_cfg =
 
 .channel = 0,
   .phy_lsi_address = 0, .phy_reset_wait_time = 0x00020000, .mii_bit_access_wait_time = 8, .phy_lsi_type =
-          ETHER_PHY_LSI_TYPE_KIT_COMPONENT,
+          ETHER_PHY_LSI_TYPE_DEFAULT,
   .flow_control = ETHER_PHY_FLOW_CONTROL_DISABLE, .mii_type = ETHER_PHY_MII_TYPE_RMII, .p_context = NULL, .p_extend =
           NULL,
 
@@ -84,7 +84,7 @@ const ether_cfg_t g_ether0_cfg =
 
   .interrupt_priority = (12),
 
-  .p_callback = NULL,
+  .p_callback = user_ether0_callback,
   .p_ether_phy_instance = &g_ether_phy0, .p_context = NULL, .p_extend = &g_ether0_extended_cfg_t, };
 
 /* Instance structure to use this module. */

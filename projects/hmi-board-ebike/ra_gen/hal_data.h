@@ -63,8 +63,8 @@ extern const ether_instance_t g_ether0;
 extern ether_instance_ctrl_t g_ether0_ctrl;
 extern const ether_cfg_t g_ether0_cfg;
 
-#ifndef NULL
-void NULL(ether_callback_args_t *p_args);
+#ifndef user_ether0_callback
+void user_ether0_callback(ether_callback_args_t *p_args);
 #endif
 /* Transfer on DTC Instance. */
 extern const transfer_instance_t g_transfer8;
