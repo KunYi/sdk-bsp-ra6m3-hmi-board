@@ -268,6 +268,10 @@
 #define PKG_USING_RW007_V210
 #define RW007_NOT_USE_EXAMPLE_DRIVERS
 #define RW007_SPI_MAX_HZ 15000000
+
+/* CYW43012 WiFi */
+
+/* end of CYW43012 WiFi */
 /* end of Wi-Fi */
 
 /* IoT Cloud */
@@ -299,8 +303,8 @@
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
 #define PKG_LVGL_DISP_REFR_PERIOD 30
 #define PKG_USING_LVGL_SQUARELINE
-#define PKG_LVGL_USING_V08038
-#define PKG_LVGL_VER_NUM 0x08038
+#define PKG_LVGL_USING_V08039
+#define PKG_LVGL_VER_NUM 0x080309
 /* end of LVGL: powerful and easy-to-use embedded GUI library */
 
 /* u8g2: a monochrome graphic library */
