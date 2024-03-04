@@ -46,6 +46,8 @@
             [39] = ether_eint_isr, /* EDMAC0 EINT (EDMAC 0 interrupt) */
             [40] = rtc_alarm_periodic_isr, /* RTC ALARM (Alarm interrupt) */
             [41] = rtc_carry_isr, /* RTC CARRY (Carry interrupt) */
+            [42] = usbfs_interrupt_handler, /* USBFS INT (USBFS interrupt) */
+            [43] = usbfs_resume_handler, /* USBFS RESUME (USBFS resume interrupt) */
         };
         const bsp_interrupt_event_t g_interrupt_event_link_select[BSP_ICU_VECTOR_MAX_ENTRIES] =
         {
@@ -91,5 +93,7 @@
             [39] = BSP_PRV_IELS_ENUM(EVENT_EDMAC0_EINT), /* EDMAC0 EINT (EDMAC 0 interrupt) */
             [40] = BSP_PRV_IELS_ENUM(EVENT_RTC_ALARM), /* RTC ALARM (Alarm interrupt) */
             [41] = BSP_PRV_IELS_ENUM(EVENT_RTC_CARRY), /* RTC CARRY (Carry interrupt) */
+            [42] = BSP_PRV_IELS_ENUM(EVENT_USBFS_INT), /* USBFS INT (USBFS interrupt) */
+            [43] = BSP_PRV_IELS_ENUM(EVENT_USBFS_RESUME), /* USBFS RESUME (USBFS resume interrupt) */
         };
         #endif

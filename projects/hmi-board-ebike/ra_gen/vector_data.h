@@ -6,7 +6,7 @@
         #endif
 /* Number of interrupts allocated */
 #ifndef VECTOR_DATA_IRQ_COUNT
-#define VECTOR_DATA_IRQ_COUNT    (42)
+#define VECTOR_DATA_IRQ_COUNT    (44)
 #endif
 /* ISR prototypes */
 void sci_uart_rxi_isr(void);
@@ -34,6 +34,8 @@ void r_icu_isr(void);
 void ether_eint_isr(void);
 void rtc_alarm_periodic_isr(void);
 void rtc_carry_isr(void);
+void usbfs_interrupt_handler(void);
+void usbfs_resume_handler(void);
 
 /* Vector table allocations */
 #define VECTOR_NUMBER_SCI9_RXI ((IRQn_Type) 0) /* SCI9 RXI (Received data full) */
@@ -120,6 +122,10 @@ void rtc_carry_isr(void);
 #define RTC_ALARM_IRQn          ((IRQn_Type) 40) /* RTC ALARM (Alarm interrupt) */
 #define VECTOR_NUMBER_RTC_CARRY ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
 #define RTC_CARRY_IRQn          ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
+#define VECTOR_NUMBER_USBFS_INT ((IRQn_Type) 42) /* USBFS INT (USBFS interrupt) */
+#define USBFS_INT_IRQn          ((IRQn_Type) 42) /* USBFS INT (USBFS interrupt) */
+#define VECTOR_NUMBER_USBFS_RESUME ((IRQn_Type) 43) /* USBFS RESUME (USBFS resume interrupt) */
+#define USBFS_RESUME_IRQn          ((IRQn_Type) 43) /* USBFS RESUME (USBFS resume interrupt) */
 #ifdef __cplusplus
         }
         #endif
