@@ -27,6 +27,7 @@
 
 #define BSP_CORTEX_VECTOR_TABLE_ENTRIES    (16U)
 #define BSP_VECTOR_TABLE_MAX_ENTRIES       (112U)
+#define BSP_CFG_INLINE_IRQ_FUNCTIONS       (1)
 
 #define OFS_SEQ1 0xA001A001 | (1 << 1) | (3 << 2)
 #define OFS_SEQ2 (15 << 4) | (3 << 8) | (3 << 10)
@@ -61,10 +62,10 @@
 
 /*
  ID Code
- Note: To permanently lock and disable the debug interface define the BSP_ID_CODE_PERMANENTLY_LOCKED in the compiler settings.
- WARNING: This will disable debug access to the part and cannot be reversed by a debug probe.
+ Note: To lock and disable the debug interface define BSP_ID_CODE_LOCKED in compiler settings.
+ WARNING: This will disable debug access to the part. However, ALeRASE command will be accepted, which will clear (reset) the ID code. After clearing ID code, debug access will be enabled.
  */
-#if defined(BSP_ID_CODE_PERMANENTLY_LOCKED)
+#if defined(BSP_ID_CODE_LOCKED)
             #define BSP_CFG_ID_CODE_LONG_1 (0x00000000)
             #define BSP_CFG_ID_CODE_LONG_2 (0x00000000)
             #define BSP_CFG_ID_CODE_LONG_3 (0x00000000)

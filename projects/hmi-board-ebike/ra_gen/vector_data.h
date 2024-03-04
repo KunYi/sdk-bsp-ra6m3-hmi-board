@@ -6,7 +6,7 @@
         #endif
 /* Number of interrupts allocated */
 #ifndef VECTOR_DATA_IRQ_COUNT
-#define VECTOR_DATA_IRQ_COUNT    (42)
+#define VECTOR_DATA_IRQ_COUNT    (44)
 #endif
 /* ISR prototypes */
 void sci_uart_rxi_isr(void);
@@ -34,10 +34,12 @@ void r_icu_isr(void);
 void ether_eint_isr(void);
 void rtc_alarm_periodic_isr(void);
 void rtc_carry_isr(void);
+void usbfs_interrupt_handler(void);
+void usbfs_resume_handler(void);
 
 /* Vector table allocations */
-#define VECTOR_NUMBER_SCI9_RXI ((IRQn_Type) 0) /* SCI9 RXI (Received data full) */
-#define SCI9_RXI_IRQn          ((IRQn_Type) 0) /* SCI9 RXI (Received data full) */
+#define VECTOR_NUMBER_SCI9_RXI ((IRQn_Type) 0) /* SCI9 RXI (Receive data full) */
+#define SCI9_RXI_IRQn          ((IRQn_Type) 0) /* SCI9 RXI (Receive data full) */
 #define VECTOR_NUMBER_SCI9_TXI ((IRQn_Type) 1) /* SCI9 TXI (Transmit data empty) */
 #define SCI9_TXI_IRQn          ((IRQn_Type) 1) /* SCI9 TXI (Transmit data empty) */
 #define VECTOR_NUMBER_SCI9_TEI ((IRQn_Type) 2) /* SCI9 TEI (Transmit end) */
@@ -48,12 +50,12 @@ void rtc_carry_isr(void);
 #define SDHIMMC1_ACCS_IRQn          ((IRQn_Type) 4) /* SDHIMMC1 ACCS (Card access) */
 #define VECTOR_NUMBER_SDHIMMC1_CARD ((IRQn_Type) 5) /* SDHIMMC1 CARD (Card detect) */
 #define SDHIMMC1_CARD_IRQn          ((IRQn_Type) 5) /* SDHIMMC1 CARD (Card detect) */
-#define VECTOR_NUMBER_DMAC0_INT ((IRQn_Type) 6) /* DMAC0 INT (DMAC transfer end 0) */
-#define DMAC0_INT_IRQn          ((IRQn_Type) 6) /* DMAC0 INT (DMAC transfer end 0) */
+#define VECTOR_NUMBER_DMAC0_INT ((IRQn_Type) 6) /* DMAC0 INT (DMAC0 transfer end) */
+#define DMAC0_INT_IRQn          ((IRQn_Type) 6) /* DMAC0 INT (DMAC0 transfer end) */
 #define VECTOR_NUMBER_GLCDC_LINE_DETECT ((IRQn_Type) 7) /* GLCDC LINE DETECT (Specified line) */
 #define GLCDC_LINE_DETECT_IRQn          ((IRQn_Type) 7) /* GLCDC LINE DETECT (Specified line) */
-#define VECTOR_NUMBER_DRW_INT ((IRQn_Type) 8) /* DRW INT (Display list interrupt) */
-#define DRW_INT_IRQn          ((IRQn_Type) 8) /* DRW INT (Display list interrupt) */
+#define VECTOR_NUMBER_DRW_INT ((IRQn_Type) 8) /* DRW INT (DRW interrupt) */
+#define DRW_INT_IRQn          ((IRQn_Type) 8) /* DRW INT (DRW interrupt) */
 #define VECTOR_NUMBER_JPEG_JEDI ((IRQn_Type) 9) /* JPEG JEDI (Compression/decompression process interrupt) */
 #define JPEG_JEDI_IRQn          ((IRQn_Type) 9) /* JPEG JEDI (Compression/decompression process interrupt) */
 #define VECTOR_NUMBER_JPEG_JDTI ((IRQn_Type) 10) /* JPEG JDTI (Data transfer interrupt) */
@@ -64,16 +66,16 @@ void rtc_carry_isr(void);
 #define SSI0_INT_IRQn          ((IRQn_Type) 12) /* SSI0 INT (Error interrupt) */
 #define VECTOR_NUMBER_GPT2_COUNTER_OVERFLOW ((IRQn_Type) 13) /* GPT2 COUNTER OVERFLOW (Overflow) */
 #define GPT2_COUNTER_OVERFLOW_IRQn          ((IRQn_Type) 13) /* GPT2 COUNTER OVERFLOW (Overflow) */
-#define VECTOR_NUMBER_SCI6_RXI ((IRQn_Type) 14) /* SCI6 RXI (Received data full) */
-#define SCI6_RXI_IRQn          ((IRQn_Type) 14) /* SCI6 RXI (Received data full) */
+#define VECTOR_NUMBER_SCI6_RXI ((IRQn_Type) 14) /* SCI6 RXI (Receive data full) */
+#define SCI6_RXI_IRQn          ((IRQn_Type) 14) /* SCI6 RXI (Receive data full) */
 #define VECTOR_NUMBER_SCI6_TXI ((IRQn_Type) 15) /* SCI6 TXI (Transmit data empty) */
 #define SCI6_TXI_IRQn          ((IRQn_Type) 15) /* SCI6 TXI (Transmit data empty) */
 #define VECTOR_NUMBER_SCI6_TEI ((IRQn_Type) 16) /* SCI6 TEI (Transmit end) */
 #define SCI6_TEI_IRQn          ((IRQn_Type) 16) /* SCI6 TEI (Transmit end) */
 #define VECTOR_NUMBER_SCI6_ERI ((IRQn_Type) 17) /* SCI6 ERI (Receive error) */
 #define SCI6_ERI_IRQn          ((IRQn_Type) 17) /* SCI6 ERI (Receive error) */
-#define VECTOR_NUMBER_SCI3_RXI ((IRQn_Type) 18) /* SCI3 RXI (Received data full) */
-#define SCI3_RXI_IRQn          ((IRQn_Type) 18) /* SCI3 RXI (Received data full) */
+#define VECTOR_NUMBER_SCI3_RXI ((IRQn_Type) 18) /* SCI3 RXI (Receive data full) */
+#define SCI3_RXI_IRQn          ((IRQn_Type) 18) /* SCI3 RXI (Receive data full) */
 #define VECTOR_NUMBER_SCI3_TXI ((IRQn_Type) 19) /* SCI3 TXI (Transmit data empty) */
 #define SCI3_TXI_IRQn          ((IRQn_Type) 19) /* SCI3 TXI (Transmit data empty) */
 #define VECTOR_NUMBER_SCI3_TEI ((IRQn_Type) 20) /* SCI3 TEI (Transmit end) */
@@ -90,8 +92,8 @@ void rtc_carry_isr(void);
 #define CAN0_FIFO_RX_IRQn          ((IRQn_Type) 25) /* CAN0 FIFO RX (Receive FIFO interrupt) */
 #define VECTOR_NUMBER_CAN0_FIFO_TX ((IRQn_Type) 26) /* CAN0 FIFO TX (Transmit FIFO interrupt) */
 #define CAN0_FIFO_TX_IRQn          ((IRQn_Type) 26) /* CAN0 FIFO TX (Transmit FIFO interrupt) */
-#define VECTOR_NUMBER_SCI7_RXI ((IRQn_Type) 27) /* SCI7 RXI (Received data full) */
-#define SCI7_RXI_IRQn          ((IRQn_Type) 27) /* SCI7 RXI (Received data full) */
+#define VECTOR_NUMBER_SCI7_RXI ((IRQn_Type) 27) /* SCI7 RXI (Receive data full) */
+#define SCI7_RXI_IRQn          ((IRQn_Type) 27) /* SCI7 RXI (Receive data full) */
 #define VECTOR_NUMBER_SCI7_TXI ((IRQn_Type) 28) /* SCI7 TXI (Transmit data empty) */
 #define SCI7_TXI_IRQn          ((IRQn_Type) 28) /* SCI7 TXI (Transmit data empty) */
 #define VECTOR_NUMBER_SCI7_TEI ((IRQn_Type) 29) /* SCI7 TEI (Transmit end) */
@@ -106,8 +108,8 @@ void rtc_carry_isr(void);
 #define ICU_IRQ13_IRQn          ((IRQn_Type) 33) /* ICU IRQ13 (External pin interrupt 13) */
 #define VECTOR_NUMBER_ICU_IRQ9 ((IRQn_Type) 34) /* ICU IRQ9 (External pin interrupt 9) */
 #define ICU_IRQ9_IRQn          ((IRQn_Type) 34) /* ICU IRQ9 (External pin interrupt 9) */
-#define VECTOR_NUMBER_SCI4_RXI ((IRQn_Type) 35) /* SCI4 RXI (Received data full) */
-#define SCI4_RXI_IRQn          ((IRQn_Type) 35) /* SCI4 RXI (Received data full) */
+#define VECTOR_NUMBER_SCI4_RXI ((IRQn_Type) 35) /* SCI4 RXI (Receive data full) */
+#define SCI4_RXI_IRQn          ((IRQn_Type) 35) /* SCI4 RXI (Receive data full) */
 #define VECTOR_NUMBER_SCI4_TXI ((IRQn_Type) 36) /* SCI4 TXI (Transmit data empty) */
 #define SCI4_TXI_IRQn          ((IRQn_Type) 36) /* SCI4 TXI (Transmit data empty) */
 #define VECTOR_NUMBER_SCI4_TEI ((IRQn_Type) 37) /* SCI4 TEI (Transmit end) */
@@ -120,6 +122,10 @@ void rtc_carry_isr(void);
 #define RTC_ALARM_IRQn          ((IRQn_Type) 40) /* RTC ALARM (Alarm interrupt) */
 #define VECTOR_NUMBER_RTC_CARRY ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
 #define RTC_CARRY_IRQn          ((IRQn_Type) 41) /* RTC CARRY (Carry interrupt) */
+#define VECTOR_NUMBER_USBFS_INT ((IRQn_Type) 42) /* USBFS INT (USBFS interrupt) */
+#define USBFS_INT_IRQn          ((IRQn_Type) 42) /* USBFS INT (USBFS interrupt) */
+#define VECTOR_NUMBER_USBFS_RESUME ((IRQn_Type) 43) /* USBFS RESUME (USBFS resume interrupt) */
+#define USBFS_RESUME_IRQn          ((IRQn_Type) 43) /* USBFS RESUME (USBFS resume interrupt) */
 #ifdef __cplusplus
         }
         #endif
