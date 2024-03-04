@@ -12,6 +12,9 @@
 #include "hal_data.h"
 #include <rtdevice.h>
 
+/* function declared in rt-thread/components/fal/inc/fal.h */
+extern int fal_init(void);
+
 #define LED_PIN    BSP_IO_PORT_02_PIN_09 /* Onboard LED pins */
 
 void hal_entry(void)
