@@ -56,3 +56,9 @@ objs.extend(SConscript(os.path.join(libraries_path_prefix, 'HAL_Drivers', 'SCons
 
 # make a building
 DoBuilding(TARGET, objs)
+
+# 'scons flash' will update to device
+flash_command = 'pyocd flash --frequency=8000000 --target r7fa6m3ah rtthread.hex'
+env.Command('flash', TARGET, flash_command)
+
+Default(TARGET)
