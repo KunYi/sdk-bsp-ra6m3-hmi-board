@@ -120,6 +120,7 @@
 
 /* end of Interprocess Communication (IPC) */
 /* end of POSIX (Portable Operating System Interface) layer */
+#define RT_USING_CPLUSPLUS
 /* end of C/C++ and POSIX layer */
 
 /* Network */
@@ -195,8 +196,8 @@
 #define PKG_LVGL_THREAD_PRIO 20
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
 #define PKG_LVGL_DISP_REFR_PERIOD 30
-#define PKG_LVGL_USING_V08035
-#define PKG_LVGL_VER_NUM 0x080305
+#define PKG_LVGL_USING_V08039
+#define PKG_LVGL_VER_NUM 0x080309
 #define PKG_USING_LV_MUSIC_DEMO
 /* end of LVGL: powerful and easy-to-use embedded GUI library */
 
@@ -226,6 +227,8 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
+#define PKG_USING_PERF_COUNTER
+#define PKG_USING_PERF_COUNTER_V2241
 /* end of system packages */
 
 /* peripheral libraries and drivers */
@@ -275,6 +278,11 @@
 
 /* Arduino libraries */
 
+#define PKG_USING_RTDUINO
+#define RTDUINO_THREAD_SIZE 2048
+#define RTDUINO_THREAD_PRIO 30
+#define RTDUINO_SUPPORT_HIGH_PRECISION_MICROS
+#define PKG_USING_RTDUINO_LATEST_VERSION
 
 /* Projects and Demos */
 

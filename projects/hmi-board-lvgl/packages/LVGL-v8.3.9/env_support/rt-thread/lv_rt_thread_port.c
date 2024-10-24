@@ -59,10 +59,6 @@ static void lvgl_thread_entry(void *parameter)
     /* handle the tasks of LVGL */
     while(1)
     {
-#ifdef BSP_USING_LVGL_FACTORY_DEMO
-        extern void Display_Update(void);
-        Display_Update();
-#endif
         lv_task_handler();
         rt_thread_mdelay(LV_DISP_DEF_REFR_PERIOD);
     }
