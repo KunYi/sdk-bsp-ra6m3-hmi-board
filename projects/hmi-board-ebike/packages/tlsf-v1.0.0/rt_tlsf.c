@@ -25,6 +25,20 @@ typedef struct pool_list *pool_list_t;
 static pool_list_t pools_list;
 
 #ifdef RT_USING_HOOK
+#if defined(RT_VERSION_CHECK) && (RTTHREAD_VERSION >= RT_VERSION_CHECK(5, 1, 0))
+static void (*rt_malloc_hook)(void **ptr, rt_size_t size);
+static void (*rt_free_hook)(void **ptr);
+
+void rt_malloc_sethook(void (*hook)(void **ptr, rt_size_t size))
+{
+    rt_malloc_hook = hook;
+}
+
+void rt_free_sethook(void (*hook)(void **ptr))
+{
+    rt_free_hook = hook;
+}
+#else
 static void (*rt_malloc_hook)(void *ptr, rt_size_t size);
 static void (*rt_free_hook)(void *ptr);
 
@@ -38,6 +52,23 @@ void rt_free_sethook(void (*hook)(void *ptr))
     rt_free_hook = hook;
 }
 #endif
+#endif
+
+rt_inline void tlsf_lock(void)
+{
+    if (rt_thread_self())
+    {
+        rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
+    }
+}
+
+rt_inline void tlsf_unlock(void)
+{
+    if (rt_thread_self())
+    {
+        rt_sem_release(&heap_sem);
+    }
+}
 
 void rt_system_heap_init(void *begin_addr, void *end_addr)
 {
@@ -117,9 +148,9 @@ void *rt_malloc_align(rt_size_t size, rt_size_t align)
 
     if (tlsf_ptr)
     {
-        rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
+        tlsf_lock();
         ptr = tlsf_memalign(tlsf_ptr, align, size);
-        rt_sem_release(&heap_sem);
+        tlsf_unlock();
     }
     return ptr;
 }
@@ -136,12 +167,10 @@ void *rt_malloc(rt_size_t nbytes)
 
     if (tlsf_ptr)
     {
-        rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
-
+        tlsf_lock();
         ptr = tlsf_malloc(tlsf_ptr, nbytes);
         RT_OBJECT_HOOK_CALL(rt_malloc_hook, ((void *)ptr, nbytes));
-
-        rt_sem_release(&heap_sem);
+        tlsf_unlock();
     }
     return ptr;
 }
@@ -151,12 +180,10 @@ void rt_free(void *ptr)
 {
     if (tlsf_ptr)
     {
-        rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
-
+        tlsf_lock();
         tlsf_free(tlsf_ptr, ptr);
         RT_OBJECT_HOOK_CALL(rt_free_hook, (ptr));
-
-        rt_sem_release(&heap_sem);
+        tlsf_unlock();
     }
 }
 RTM_EXPORT(rt_free);
@@ -165,11 +192,9 @@ void *rt_realloc(void *ptr, rt_size_t nbytes)
 {
     if (tlsf_ptr)
     {
-        rt_sem_take(&heap_sem, RT_WAITING_FOREVER);
-
+        tlsf_lock();
         ptr = tlsf_realloc(tlsf_ptr, ptr, nbytes);
-
-        rt_sem_release(&heap_sem);
+        tlsf_unlock();
     }
     return ptr;
 }
@@ -241,5 +266,38 @@ void list_mem(void)
     rt_kprintf("used memory : %d\n", used_mem);
 }
 
-#endif
+static _tlsftrace_dump(void *ptr, size_t size, int used)
+{
+    rt_kprintf("[0x%08x - ", ptr);
+    if (size < 1024)
+    {
+        rt_kprintf("%5d", size);
+    }
+    else if (size < 1024 * 1024)
+    {
+        rt_kprintf("%4dK", size / 1024);
+    }
+    else
+    {
+        rt_kprintf("%4dM", size / (1024 * 1024));
+    }
 
+    if (used)
+    {
+        rt_kprintf("] used\n");
+    }
+    else
+    {
+        rt_kprintf("] free\n");
+    }
+}
+
+int tlsftrace(void)
+{
+    rt_kprintf("\n--memory item information --\n");
+    tlsf_walk_pool(tlsf_get_pool(tlsf_ptr), _tlsftrace_dump, 0);
+    return 0;
+}
+MSH_CMD_EXPORT(tlsftrace, dump tlsf memory trace information);
+
+#endif

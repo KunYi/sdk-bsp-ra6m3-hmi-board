@@ -7,6 +7,7 @@
 
 #define RT_NAME_MAX 8
 #define RT_ALIGN_SIZE 8
+#define RT_CPUS_NR 1
 #define RT_THREAD_PRIORITY_32
 #define RT_THREAD_PRIORITY_MAX 32
 #define RT_TICK_PER_SECOND 1000
@@ -56,7 +57,7 @@
 #define ARCH_ARM
 #define ARCH_ARM_CORTEX_M
 #define ARCH_ARM_CORTEX_M4
-
+#define RT_BACKTRACE_LEVEL_MAX_NR 32
 /* RT-Thread Components */
 
 #define RT_USING_COMPONENTS_INIT
@@ -303,7 +304,7 @@
 #define PKG_LVGL_THREAD_PRIO 20
 #define PKG_LVGL_THREAD_STACK_SIZE 4096
 #define PKG_LVGL_DISP_REFR_PERIOD 30
-#define PKG_USING_LVGL_SQUARELINE
+#define PKG_LVGL_USING_SQUARELINE
 #define PKG_LVGL_USING_V08039
 #define PKG_LVGL_VER_NUM 0x080309
 /* end of LVGL: powerful and easy-to-use embedded GUI library */
