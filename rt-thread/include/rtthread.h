@@ -784,7 +784,7 @@ if (!(EX))                                                                    \
     rt_assert_handler(#EX, __FUNCTION__, __LINE__);                           \
 }
 #else
-#define RT_ASSERT(EX)
+#define RT_ASSERT(EX) (void)(EX)
 #endif /* RT_USING_DEBUG */
 
 #ifdef RT_DEBUGING_CONTEXT
